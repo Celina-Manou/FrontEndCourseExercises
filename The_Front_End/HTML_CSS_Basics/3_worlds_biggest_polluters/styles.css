@@ -1,0 +1,17 @@
+body {
+   text-align: center; 
+}
+table {
+    margin: 0 auto;
+}
+td {
+    background-color: rosybrown;
+    border: 5px solid gray;
+    padding: 8px;
+}
+footer {
+    margin-top: 50px;
+    padding: 10px;
+}a {
+    text-decoration: none;
+}
