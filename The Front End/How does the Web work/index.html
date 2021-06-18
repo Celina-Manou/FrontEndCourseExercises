@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>How Internet Works</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	<style>
+		BODY {
+			FONT-FAMILY: verdana, arial, sans-serif;
+			FONT-SIZE: 15pt
+		}
+
+		P {
+			FONT-FAMILY: verdana, arial, sans-serif;
+			FONT-SIZE: 15pt
+		}
+
+		A:LINK {
+			COLOR: black
+		}
+
+		A:HOVER {
+			COLOR: rgb(71, 127, 190)
+		}
+
+		A:VISITED {
+			COLOR: black
+		}
+
+		A:ACTIVE {
+			COLOR: black
+		}
+
+
+		body {
+			background-image: url('https://img.freepik.com/free-vector/abstract-geometric-shape-connection-with-3d-cubes-background_42705-105.jpg?size=626&ext=jpg');
+			background-attachment: fixed;
+			background-size: cover;
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 80px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>How Internet Works: A Brief Introduction</h1>
+
+	<h2>
+		<strong>Contents:</strong>
+	</h2>
+
+	<ol>
+		<li>
+			<a href="#Intro">Introduction</a>
+		</li>
+		<li>
+			<a href="#Hardware">Hardware</a>
+		</li>
+		<li>
+			<a href="#Internet_Protocols">Internet Protocols</a>
+		</li>
+		<li>
+			<a href="#IP_Addresses">IP Addresses</a>
+		</li>
+		<li>
+			<a href="#DNS">DNS</a>
+		</li>
+		<li>
+			<a href="#Packets(TCP/UDP)">Packets (TCP/UDP)</a>
+		</li>
+		<li>
+			<a href="#HTTP:Hypertext_Transfer_Protocol">HTTP: Hypertext Transfer Protocol</a>
+		</li>
+		<li>
+			<a href="#HTML:Hypertext_Markup_Language">HTML: Hypertext Markup Language</a>
+		</li>
+		<li>
+			<a href="#Routers">Routers</a>
+		</li>
+		<li>
+			<a href="#Wrap_up">Wrap up</a>
+		</li>
+		<li>
+			<a href="#Resources">Resources</a>
+		</li>
+	</ol>
+
+
+	<h2>
+		<a name="Intro"><strong>Introduction</strong></a>
+	</h2>
+	<p>We use internet everyday to entertain ourselves, communicate or learn. But, did we ever wondered what happens
+		behind the scenes? How does internet really work? As long you are here i assume you joined the group of
+		"Wonderers".</p>
+	<p>In this article, we will try to briefly explain and have a good understanding on how infrastructure and
+		technologies behind the scenes, make the Internet work. More information and depth on the specific topic can be
+		found at the resources section at the end of this article.</p>
+	<p><strong>Let's start!</strong></p>
+
+	<h2>
+		<a name="Hardware"><strong>Hardware</strong></a>
+	</h2>
+	<p>One of Internet's main components is Hardware. When we refer to hardware we include everything from the cables
+		that carry terabits of information every second to your computer to radios, smartphones, routers, servers,
+		satellites, and other devices.</p>
+
+	<p>All these devices together create the network of networks.</p>
+	<p>Inside this network we can find two types of elements. From one hand we have the static ones;machines that hold
+		all the information anyone can search for on the internet and are called <strong>Servers</strong>.</p>
+	<p>On the other hand, it's us; Through our computer, smartphone or any other device we use to connect to the
+		internet, we ask for the information stored in the servers. This is why our devices' position is described as an
+		end-point and are called <strong>Clients</strong>.</p>
+	<p>Other elements are nodes. They act as a point of connection within a network. It is an environment where all
+		devices are accessible through the network. And then there are the transmission lines which can be physical
+		(cables and fiber optics) or they can be wireless signals from satellites, cell phone or 4G towers, or radios.
+	</p>
+	<p>Ok, until now we know the basic concept on which internet is based on; the server-client information's exchange
+		relationship. But how do we achieve this connection? How do we make this hardware work for us? How are we able
+		to approach the information we are looking for that is stored in a server?</p>
+	<p>Here come the <strong>Protocols</strong>. Protocols are sets of rules that machines follow to complete tasks.
+		Without them, the communication between devices and machines couldn't happen. The machines would not be able to
+		understand one another or distribute the information in a meaningful way to the client. The protocols guide the
+		machines by providing them with the necessary method and a common language to use and finally be able to
+		transmit data.</p>
+
+	<h2>
+		<a name="Internet_Protocols"><strong>Internet Protocols</strong></a>
+	</h2>
+	<p>Let's take, now, a closer look on protocols. As we saw, protocols establish the rules for how information passes
+		through the Internet. Otherwise, we would need direct connections to other computers to access the information
+		they hold. We'd also have to make both our computer and the target computer understand a common language.</p>
+	<p>Two of the most important protocols are the <strong>Transmission Control Protocol (TCP)</strong> and the
+		<strong>Internet Protocol (IP)</strong>. Often grouped together as TCP/IP. If we use an FTP server, we
+		automatically rely on the file transfer protocol. There is also <strong>User Datagram Protocol (UDP)</strong>
+		which is a connectionless protocol. It speeds up communications as it does not necessarily acquire a connection
+		before data is transferred. This allows data to 'travel' very quickly. Despite high speed though, there are more
+		chances for a packet to become lost in transit. Last but not least, you have seen <strong>hypertext transfer
+			protocol (HTTP)</strong>. This is the protocol we use to view Web sites through a browser.</p>
+
+	<h2>
+		<a name="IP_Addresses"><strong>IP Addresses</strong></a>
+	</h2>
+	<p>Let's zoom in a bit more and focus specifically on what IP Addresses are. Each device connected to the Internet
+		has an IP address. Think of it like our unique cellphone number. This is how one machine can detect another
+		through the massive network.</p>
+	<p>The version of IP we mostly use today is IPv4, which is based on a 32-bit address system. But seems not to be
+		enough as We're running out of addresses. That's why, back in 1991, the Internet Engineering Task Force(IETF)
+		decided that it was almost obligatory to develop a new version of IP to meet demand in addresses. As a result
+		IPv6 arised; a 128-bit address system, capable to cover the demand's needs with the necessary number of IPs.</p>
+
+	<h2>
+		<a name="DNS"><strong>DNS</strong></a>
+	</h2>
+	<p>Let's, now, observe this journey (and hopefully enjoy it). What do we do to send a message or retrieve
+		information from another computer? We saw that TCP/IP protocols are essential to allow this transition to
+		happen. So the journey begins with our request going out over the network. This request hits domain name servers
+		(DNS) until it finds the target server that hold the information we are looking for. The DNS guides the request
+		to the right direction. As soon as the target server receives the request, it sends a response back to our
+		computer. Though, the way back might not be the same as the first one. Data can follow a completely different
+		path to get back to us; the one with the least 'resistance'.</p>
+	<h2>
+		<a name="Packets(TCP/UDP)"><strong>Packets (TCP/UDP)</strong></a>
+	</h2>
+	<p>vFine, we saw the necessary process that must be followed so that the data get back to us. What happens next?
+		What do we actually get and from who? As soon as the request will go to the Web server, it will respond by
+		sending the requested file in a series of <strong>Packets</strong>. When we say Packets we refer to parts of a
+		file that range between 1,000 and 1,500 bytes. Each packet contains part of the body of your message. So,
+		similarly to a real-life package, each packet includes a source and destination along with the data being
+		transferred. Packets contain headers and footers that tell computers what's in the packet and point the
+		direction in which the information needed to complete the file can be found and retrieved. Each packet travels
+		through the network and down to our computer.</p>
+
+	<p> We conclude that packets can travel multiple paths to get to their destination, it's possible for information to
+		route around congested areas on the Internet. In fact, as long as some connections remain, entire sections of
+		the Internet could go down and information could still travel from one section to another.</p>
+
+	<p>When the packets get to us, our device arranges them according to the rules of the protocols and finally we get
+		what we asked for</p>
+
+	<p>Seems like a long journey, right? But yet fascinating and quick.</p>
+
+	<p> To adapt this knowledge we can think of an everyday example. What exactly happens when we send an e-mail or we
+		get a phone call over the Internet? We now can say that both get broken into packets and start their journey
+		across the Internet.</p>
+
+	<h2>
+		<a name="HTTP:Hypertext_Transfer_Protocol"><strong>HTTP: Hypertext Transfer Protocol</strong></a>
+	</h2>
+	<p>Development of HTTP was initiated by Tim Berners-Lee at CERN in 1989. Development of early HTTP Requests for
+		Comments (RFCs) was a coordinated effort by the Internet Engineering Task Force (IETF) and the World Wide Web
+		Consortium (W3C), with work later moving to the IETF.</p>
+
+	<p>The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web, and is used to load web pages
+		using hypertext links, transmiitting hypermedia documents, such as HTML. HTTP functions as a request–response
+		protocol in the client–server computing model. It is an application layer protocol for distributed,
+		collaborative, hypermedia information systems.</p>
+
+	<h2>
+		<a name="HTML:Hypertext_Markup_Language"><strong>HTML: Hypertext Markup Language</strong></a>
+	</h2>
+
+	<p>First developed by Tim Berners-Lee in 1990, HTML is short for Hypertext Markup Language.</p>
+
+
+	<p>HTML is used to create electronic documents. It is a formatting system for displaying material retrieved over the
+		Internet. In other words, is the language used to create webpages. "Hypertext" refers to the hyperlinks that an
+		HTML page may contain. "Markup language" refers to the way tags are used to define the page layout and elements
+		within the page.</p>
+	<p>
+		HTML provides a basic structure of the page, upon which Cascading Style Sheets are overlaid to change its
+		appearance.
+	</p>
+	<h2>
+		<a name="Routers"><strong>Routers</strong></a>
+	</h2>
+	<p>A router is a networking (physical or virtual) internetworking device that is designed to receive, analyze, and
+		forward data packets between computer networks. It “routes” traffic between the devices and the internet. Data
+		sent through the internet, such as a web page or email, is in the form of data packets. </p>
+
+	<p> Router analyzes a destination IP address of a given packet header and compares it with the routing table to
+		decide the packet's next path. The list of routing tables provides directions to transfer the data to a
+		particular network destination. They have a set of rules that compute the best path to forward the data to the
+		given IP address.</p>
+
+	<p>Routers use a modem such as a cable, fiber, or DSL modem to allow communication between other devices and the
+		internet. Most of the routers have several ports to connect different devices to the internet at the same time.
+		It uses the routing tables to determine where to send data and from where the traffic is coming.</p>
+
+	<p>Router types are: </p>
+	<ol>
+		<li>The <strong>Wireless (Wi-Fi) router</strong>.
+			Wireless routers provide Wi-Fi access to smartphones, laptops, and other devices with Wi-Fi network
+			capabilities. Also, they may provide standard Ethernet routing for a small number of wired network devices.
+			Some Wi-Fi routers can act as a combination router and modem, converting an incoming broadband signal from
+			your ISP.</li>
+
+		<li><strong>The Brouter</strong>.
+			Short for bridge router, a brouter is a networking device that serves as both a bridge and a router.</li>
+
+		<li><strong>The Core router</strong>.
+			A core router is a router in a computer network that routes data within a network, but not between networks.
+		</li>
+
+		<li><strong>The Edge router</strong>.
+			The term edge device refers to any apparatus that acts as an entry point into the core of the network. An
+			edge device acts as a checkpoint at the border between two countries. When data attempts to enter the
+			network, it is inspected according to certain security procedures, and either allowed or denied entry.</li>
+
+		<li><strong>The Virtual router</strong>.
+			A virtual router is a backup router used in a Virtual Router Redundancy Protocol (VRRP) setup. This is a
+			protocol used with routers to help prevent network downtime.</li>
+	</ol>
+
+	<h2>
+		<a name="Wrap_up"><strong>Wrap up</strong></a>
+	</h2>
+	<p>Now that we covered the basics and briefly explained the way infrastructure and technologies in the background
+		commit to make the internet work, i hope you find yourself more excited when you take any online action while
+		noticing what is going on behind the scenes. In any way, we should notice, observe, get to know and admire
+		something and thw way it operates so that we feel grateful for having it. And the truth is, after writing this
+		article, i feel more grateful for being able to enjoy Internet's capabilities and potentials! See ya
+		"Wonderers".</p>
+
+	<h2>
+		<a name="Resources"><strong>Resources</strong></a>
+	</h2>
+
+	<ul>
+		<li><a href="https://vimeo.com/128575085" target="_blank">BBC — How Does The Internet Work?</a></li>
+		<li><a href="https://youtu.be/7_LPdttKXPc?t=46s" target="_blank">How the Internet Works in 5 Minutes</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/Learn/Common_questions/How_does_the_Internet_work"
+				target="_blank">How does the Internet work?</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/Learn/Common_questions/Pages_sites_servers_and_search_engines"
+				target="_blank">What is the difference between webpage, website, web server, and search engine?</a></li>
+		<li><a href="https://youtu.be/BrXPcaRlBqo" target="_blank">Google short</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/Learn/Getting_started_with_the_web/How_the_Web_works#Clients_and_servers"
+				target="_blank">Read about how one part of the web interacts with another</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name#How_does_a_DNS_request_work"
+				target="_blank">How does a DNS request work?</a></li>
+		<li><a href="https://www.youtube.com/watch?v=72snZctFFtA&feature=youtu.be&t=45s" target="_blank">DNS
+				Explained</a></li>
+		<li><a href="https://www.youtube.com/watch?v=ewrBalT_eBM&feature" target="_blank">A packet’s journey.</a></li>
+		<li><a href="https://www.youtube.com/watch?v=JWqoTRWQWQM" target="_blank">Internet Technologies – Harvard
+				CS50</a></li>
+		<li><a href="https://www.youtube.com/watch?v=04GztBlVo_s" target="_blank">Internet Primer</a></li>
+		<li><a href="https://www.youtube.com/watch?v=iSFEjQRulf0" target="_blank">Web and the HTTP Protocol</a></li>
+		<li><a href="https://www.amazon.co.uk/dp/B007TB5SKA/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1"
+				target="_blank">Tubes: Behind the Scenes at the Internet</a></li>
+		<li><a href="https://www.youtube.com/watch?v=A1g9SokDJSU" target="_blank">Internet Protocol (IP) Addresses</a>
+		</li>
+		<li><a href="https://www.youtube.com/watch?v=GP7uvI_6uas" target="_blank">Internet’s Packets: The Transfer
+				Control Protocol (TCP)</a></li>
+		<li><a href="https://launchschool.com/books/http" target="_blank">Introduction to HTTP</a></li>
+	</ul>
+
+</body>
+
+</html>
