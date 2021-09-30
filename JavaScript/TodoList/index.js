@@ -1,98 +1,149 @@
-console.log("This is index.js");
+// Selectors
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".todo-button");
+const todoList = document.querySelector(".todo-list");
+const filterOption = document.querySelector(".filter-todo");
 
+// Event Listeners 
+document.addEventListener("DOMContentLoaded", getTodos);
+todoButton.addEventListener('click', addTodo);
+todoList.addEventListener('click', deleteCheck);
+filterOption.addEventListener('click', filterTodo);
 
-// Constructor
-function Book(name, author, type) {
-    this.name = name;
-    this.author = author;
-    this.type = type;
-}
+// Functions
+function addTodo (event) {
+    //prevent form from submitting
+    event.preventDefault();
+    // console.log('Helloo');
 
-// Display Constructor
-function Display() {
+    //Create Todo DIV
+    const todoDiv = document.createElement('div');
+    todoDiv.classList.add('todo');
 
-}
+    //Create LI
+    const newTodo = document.createElement('li');
+    newTodo.innerText = todoInput.value;
+    newTodo.classList.add('todo-item');
+    todoDiv.appendChild(newTodo);
 
-// Add methods to display prototype
-Display.prototype.add = function (book) {
-    console.log("Adding to UI");
-    tableBody = document.getElementById('tableBody');
-    let uiString = `<tr>
-                        <td>${book.name}</td>
-                        <td>${book.author}</td>
-                        <td>${book.type}</td>
-                    </tr>`;
-    tableBody.innerHTML += uiString;
-}
+    //Add local todos
+    saveLocalTodos(todoInput.value);
 
-// Implement the clear function
-Display.prototype.clear = function () {
-    let libraryForm = document.getElementById('libraryForm');
-    libraryForm.reset();
-}
+    //Clear todoInput value
+    todoInput.value = "";
 
-// Implement the validate function
-Display.prototype.validate = function (book) {
-    if (book.name.length < 2 || book.author.length < 2) {
-        return false
-    }
-    else {
-        return true;
-    }
-}
-Display.prototype.show = function (type, displayMessage) {
-    let message = document.getElementById('message');
-    message.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                            <strong>Message:</strong> ${displayMessage}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                            </button>
-                        </div>`;
-    setTimeout(function () {
-        message.innerHTML = ''
-    }, 2000);
+    //Checked button
+    const completedButton = document.createElement('button');
+    completedButton.innerHTML = '<i class="fas fa-check"></i>';
+    completedButton.classList.add('complete-btn');
+    todoDiv.appendChild(completedButton);
+    //Checked trash button
+    const trashButton = document.createElement('button');
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
+    trashButton.classList.add('trash-btn');
+    todoDiv.appendChild(trashButton);
+    //Append to list
+    todoList.appendChild(todoDiv);
 
 }
 
-
-// Add submit event listener to libraryForm
-let libraryForm = document.getElementById('libraryForm');
-libraryForm.addEventListener('submit', libraryFormSubmit);
-
-function libraryFormSubmit(e) {
-    console.log('YOu have submitted library form');
-    let name = document.getElementById('bookName').value;
-    let author = document.getElementById('author').value;
-    let type;
-    let fiction = document.getElementById('fiction');
-    let programming = document.getElementById('programming');
-    let cooking = document.getElementById('cooking');
-
-    if (fiction.checked) {
-        type = fiction.value;
-    }
-    else if (programming.checked) {
-        type = programming.value;
-    }
-    else if (cooking.checked) {
-        type = cooking.value;
+function deleteCheck(e) {
+    // console.log(e.target);
+    const item = e.target;
+    //Delete todo
+    if (item.classList[0] === "trash-btn") {
+        const todo = item.parentElement;
+        //Animation
+        todo.classList.add('fall');
+        removeLocalTodos(todo);
+        todo.addEventListener('transitionend', function() {
+            todo.remove();
+        });
     }
 
-    let book = new Book(name, author, type);
-    console.log(book);
-
-    let display = new Display();
-
-    if (display.validate(book)) {
-
-        display.add(book);
-        display.clear();
-        display.show('success', 'Your book has been successfully added')
+    //Check Mark
+    if (item.classList[0] === "complete-btn") {
+        const todo = item.parentElement;
+        todo.classList.toggle("completed");
     }
-    else {
-        // Show error to the user
-        display.show('danger', 'Sorry you cannot add this book');
-    }
-
-    e.preventDefault();
 }
+function filterTodo(e) {
+    const todos = todoList.childNodes;
+    // console.log(todos);
+    todos.forEach(function(todo) {
+        switch(e.target.value) {
+            case "all":
+             todo.style.display = "flex";
+                break;
+            case "completed":
+                if (todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+            case "uncompleted":
+                if (!todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                }  else {
+                    todo.style.display = "none";
+                }
+        }
+    });
+}
+
+function saveLocalTodos(todo) {
+    //Check if there are already stored todos
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+      todos = [];
+    } else {
+      todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+function removeLocalTodos(todo) {
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+      todos = [];
+    } else {
+      todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    const todoIndex = todo.children[0].innerText;
+    todos.splice(todos.indexOf(todoIndex), 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+  
+  function getTodos() {
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+      todos = [];
+    } else {
+      todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.forEach(function(todo) {
+      //Create todo div
+      const todoDiv = document.createElement("div");
+      todoDiv.classList.add("todo");
+      //Create list
+      const newTodo = document.createElement("li");
+      newTodo.innerText = todo;
+      newTodo.classList.add("todo-item");
+      todoDiv.appendChild(newTodo);
+      todoInput.value = "";
+      //Create Completed Button
+      const completedButton = document.createElement("button");
+      completedButton.innerHTML = `<i class="fas fa-check"></i>`;
+      completedButton.classList.add("complete-btn");
+      todoDiv.appendChild(completedButton);
+      //Create trash button
+      const trashButton = document.createElement("button");
+      trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
+      trashButton.classList.add("trash-btn");
+      todoDiv.appendChild(trashButton);
+      //attach final Todo
+      todoList.appendChild(todoDiv);
+    });
+  }
+  
